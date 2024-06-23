@@ -5,7 +5,7 @@ using UsersAPI.Services;
 namespace UsersAPI.Controllers
 {
 	[ApiController]
-	[Route("Controller")]
+	[Route("User")]
 	public class UserController : ControllerBase
 	{
 		private UserService _userService;
@@ -25,8 +25,8 @@ namespace UsersAPI.Controllers
 		[HttpPost("login")]
 		public async Task<IActionResult> LoginAsync([FromBody] UserLoginDto dto)
 		{
-			await _userService.Login(dto);
-			return Ok("Login successful.");
+			var token = await _userService.Login(dto);
+			return Ok(token);
 		}
 	}
 }
